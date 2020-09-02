@@ -1,0 +1,66 @@
+html, body, #game{
+    margin: 0;
+    background: black;
+}
+
+#game {
+  display: block;
+  width: 1000px;
+  height: 750px;
+  margin: 50px auto;
+  background-color: green;
+  display: flex;
+  align-items: flex-end;
+}
+
+.table{
+    
+    height: 50%;
+    width: 100%;
+    display: flex;
+    .work-table{
+        width: 50%;
+        height: 100%;
+        background-color: blue;
+        display: flex;
+        position: relative;
+
+
+    }
+    .report-section{
+        width: 50%;
+        height: 100%;
+        background-color: red;
+        display: flex;
+        .holder{
+            margin: 8px;
+            background: gray;
+            width: 100px;
+            height: 140px;
+            border: 2px inset;
+            text-align: center;
+        }
+    }
+}
+.page{
+    height: 140px;
+    width: 100px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid black;
+    text-align: center;
+    user-select: none;
+    &.v-0{
+        background: lightcyan;
+    }
+    &.v-1{
+        background: gray;
+    }
+    &.v-2{
+        background: lightskyblue;
+    }
+    &.v-3{
+        background: lightgrey;
+    }
+}
