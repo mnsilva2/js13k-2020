@@ -30,15 +30,28 @@ html, body, #game{
     .report-section{
         width: 50%;
         height: 100%;
-        background-color: red;
-        display: flex;
-        .holder{
-            margin: 8px;
-            background: gray;
-            width: 100px;
-            height: 140px;
-            border: 2px inset;
-            text-align: center;
+        .in-progress{
+            background-color: red;
+            display: flex;
+            height: 185px;
+            justify-content: center;
+            align-items: center;
+            .holder{
+                margin: 8px;
+                background: gray;
+                width: 100px;
+                height: 140px;
+                border: 2px inset;
+                text-align: center;
+            }
+        }
+        #final{
+            background-color: yellow;
+            height: 190px;
+            .page{
+                transition: 250ms;
+            }
+
         }
     }
 }

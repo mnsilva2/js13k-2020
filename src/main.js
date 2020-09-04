@@ -103,7 +103,11 @@ function checkIfAllFilledIn() {
         }
     }
     if (valid) {
-        Array.from(document.getElementsByClassName("holder")).forEach((elem) => { elem.innerHTML = "" })
+        render.addReportsToPile(papersPlaced);
+        for (const property in papersPlaced) {
+            papersPlaced[property] = undefined
+        }
+
     }
 
 }
