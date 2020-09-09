@@ -45,25 +45,25 @@ module.exports = {
                 paperElem.style.position = "absolute";
                 switch (papersPlaced[property].type) {
                     case "cover":
-                        paperElem.style.transform = "translate(20px, -130px)"
+                        paperElem.style.transform = "translate(20px, -150px)"
                         break;
                     case "introduction":
-                        paperElem.style.transform = "translate(140px, -130px)"
+                        paperElem.style.transform = "translate(140px, -150px)"
                         break;
                     case "content":
-                        paperElem.style.transform = "translate(260px, -130px)"
+                        paperElem.style.transform = "translate(260px, -150px)"
                         break;
                     case "conclusion":
-                        paperElem.style.transform = "translate(380px, -130px)"
+                        paperElem.style.transform = "translate(380px, -150px)"
                         break;
 
                 }
                 setTimeout(() => {
-                    paperElem.style.transform = "translate(" + randomX + "px, -130px)"
+                    paperElem.style.transform = "translate(" + randomX + "px, -150px)"
                     setTimeout(() => {
                         paperElem.style.transform = "translate(" + randomX + "px, 0)"
                     }, 250)
-                })
+                }, 50)
                 document.getElementById("final").appendChild(paperElem)
                 // document.getElementById(papersPlaced[property].id).style.transform = "translate(10px)"
             }

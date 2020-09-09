@@ -96,8 +96,10 @@ function getPaperFromId(id) {
 
 function checkIfAllFilledIn() {
     let valid = true
+    if (papersPlaced["cover"])
+        variant = papersPlaced["cover"].variant
     for (const property in papersPlaced) {
-        if (!papersPlaced[property] || property !== papersPlaced[property].type) {
+        if (!papersPlaced[property] || property !== papersPlaced[property].type || variant !== papersPlaced[property].variant) {
             valid = false
             break;
         }
