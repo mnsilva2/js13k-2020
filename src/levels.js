@@ -2,7 +2,8 @@ module.exports = {
     levels: [
         {
             papers: {},
-            text: ""
+            text: "",
+            time: 60
         }
     ],
 

@@ -69,6 +69,21 @@ module.exports = {
             }
         }
     },
+    renderTimer: function (time) {
+        let start = null
+        function step(timestamp) {
+            var element = document.getElementById("timer");
+
+            if (!start) start = timestamp;
+            var progress = timestamp - start;
+            console.log(progress)
+            element.style.width = 100 - ((progress * 100) / (time * 1000)) + "%";
+            if (progress < time * 1000) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        window.requestAnimationFrame(step);
+    },
 
     cleanTable: function () {
         document.getElementById("work-table").innerHTML = ""

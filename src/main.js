@@ -34,7 +34,7 @@ for (var i = 0; i < numberOfPapers; i++) {
 }
 
 render.renderPapers(papers, mousedown);
-
+render.renderTimer(10)
 
 
 let paperSelected = -1
