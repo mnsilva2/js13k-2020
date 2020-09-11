@@ -1,6 +1,12 @@
-html, body, #game{
-    margin: 0;
-    background: black;
+html,
+body,
+#game {
+  margin: 0;
+  background: black;
+}
+
+* {
+  font-family: monospace;
 }
 
 #game {
@@ -14,80 +20,214 @@ html, body, #game{
   position: relative;
 }
 
-.table{
-    
-    height: 50%;
-    width: 100%;
+#left,
+#top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  z-index: 100;
+}
+
+#left {
+  bottom: 0;
+  width: calc(50% - 500px);
+}
+
+#top {
+  height: 50px;
+  right: 0;
+}
+
+.table {
+  height: 50%;
+  width: 100%;
+  display: flex;
+
+  .work-table {
+    width: 50%;
+    height: 100%;
+    background-color: blue;
     display: flex;
-    .work-table{
-        width: 50%;
-        height: 100%;
-        background-color: blue;
-        display: flex;
-        position: relative;
+    position: relative;
 
 
-    }
-    .report-section{
-        width: 50%;
-        height: 100%;
-        .in-progress{
-            background-color: red;
-            display: flex;
-            height: 185px;
-            justify-content: center;
-            align-items: center;
-            .holder{
-                margin: 8px;
-                background: gray;
-                width: 100px;
-                height: 140px;
-                border: 2px inset;
-                text-align: center;
-            }
-        }
-        #final{
-            background-color: yellow;
-            height: 190px;
-            display: flex;
-            align-items: center;
-            .page{
-                transition: 250ms;
-            }
+  }
 
-        }
-    }
-}
-.page{
-    height: 140px;
-    width: 100px;
-    position: absolute;
-    background-color: white;
-    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-    border: 1px solid black;
-    text-align: center;
-    user-select: none;
-    &.v-0{
-        background: lightcyan;
-    }
-    &.v-1{
+  .report-section {
+    width: 50%;
+    height: 100%;
+
+    .in-progress {
+      background-color: red;
+      display: flex;
+      height: 185px;
+      justify-content: center;
+      align-items: center;
+
+      .holder {
+        margin: 8px;
         background: gray;
+        width: 100px;
+        height: 140px;
+        border: 2px inset;
+        text-align: center;
+      }
     }
-    &.v-2{
-        background: lightskyblue;
+
+    #final {
+      background-color: yellow;
+      height: 190px;
+      display: flex;
+      align-items: center;
+
+      .page {
+        transition: 250ms;
+      }
+
     }
-    &.v-3{
-        background: lightgrey;
-    }
+  }
 }
-#timer{
-    position: absolute;
-    height: 10px;
-    top: 0;
+
+.page {
+  height: 140px;
+  width: 100px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  border: 1px solid black;
+  text-align: center;
+  user-select: none;
+
+  &.v-0 {
+    background: lightcyan;
+  }
+
+  &.v-1 {
+    background: gray;
+  }
+
+  &.v-2 {
+    background: lightskyblue;
+  }
+
+  &.v-3 {
+    background: lightgrey;
+  }
+}
+
+#timer {
+  position: absolute;
+  height: 10px;
+  top: 0;
+  left: 0;
+  background-color: red;
+  width: 100%;
+
+  &.done {
+    background-color: blue;
+  }
+}
+
+#guy {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  width: 400px;
+  height: 900px;
+  top: -100px;
+}
+
+#tie-top {
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: white transparent transparent transparent;
+}
+
+#tie-bottom {
+  width: 0;
+  height: 0;
+  margin-left: 130px;
+
+  border: 70px solid transparent;
+  border-bottom: 300px solid white;
+  position: relative;
+  top: -100px;
+}
+
+#tie-bottom:after {
+  content: '';
+  position: absolute;
+  left: -70px;
+  top: 300px;
+  width: 0;
+  height: 0;
+  border: 70px solid transparent;
+  border-top: 70px solid white;
+}
+
+#text-container {
+  position: absolute;
+  left: 500px;
+  top: 50px;
+  background-color: brown;
+  width: 450px;
+  height: 250px;
+  font-size: 2rem;
+
+}
+
+.transition {
+  transition: all 0.5s;
+}
+
+.enter {
+  animation-name: guy-enters;
+  animation-duration: 2s;
+  //   animation-timing-function: ;
+  animation-fill-mode: both;
+}
+
+.leave {
+  animation-name: guy-enters;
+  animation-duration: 2s;
+  animation-direction: reverse;
+  animation-fill-mode: both;
+  //   animation-timing-function: ;
+}
+
+@keyframes guy-enters {
+  0% {
+    left: -500px;
+    top: -100px;
+  }
+
+  12% {
+    top: -120px;
+  }
+
+  25% {
+    top: -100px;
+  }
+
+  37% {
+    top: -120px;
+  }
+
+  50% {
+    top: -100px;
+  }
+
+  75% {
+    top: -120px;
+  }
+
+  100% {
     left: 0;
-    background-color: red;
-    width: 100%;
-    &.done{
-        background-color: blue;
-    }
+    top: -100px;
+  }
 }

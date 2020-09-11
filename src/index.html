@@ -2,44 +2,54 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>JS13KGames Boilerplate</title>
-    <link rel="stylesheet" href="build.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS13KGames Boilerplate</title>
+  <link rel="stylesheet" href="build.css" />
 </head>
 
 <body>
-    <div id="game">
-        <div id="timer"></div>
-        <div class="table">
-            <div class="work-table" id="work-table">
-            </div>
-            <div class="report-section">
-                <div class="in-progress">
-                    <div class="holder" id="cover-container"><span>Cover</span>
-                        <hr>
-                        <div id="cover"></div>
-                    </div>
-                    <div class="holder" id="introduction-container"><span>Introduction</span>
-                        <hr>
-                        <div id="introduction"></div>
-                    </div>
-                    <div class="holder" id="content-container"><span>Content</span>
-                        <hr>
-                        <div id="content"></div>
-                    </div>
-                    <div class="holder" id="conclusion-container"><span>Conclusion</span>
-                        <hr>
-                        <div id="conclusion"></div>
-                    </div>
-                </div>
-                <div id="final"></div>
-            </div>
+  <div id="left"></div>
+  <div id="top"></div>
+  <div id="game">
+    <div id="guy">
+      <div id="tie-top"></div>
+      <div id="tie-bottom"></div>
+    </div>
+    <div id="text-container">
+      <p id="text"></p>
+      <button id="next" style="display: none;">Next</button>
+    </div>
+    <div id="timer"></div>
+    <div class="table">
+      <div class="work-table" id="work-table">
+      </div>
+      <div class="report-section">
+        <div class="in-progress">
+          <div class="holder" id="cover-container"><span>Cover</span>
+            <hr>
+            <div id="cover"></div>
+          </div>
+          <div class="holder" id="introduction-container"><span>Introduction</span>
+            <hr>
+            <div id="introduction"></div>
+          </div>
+          <div class="holder" id="content-container"><span>Content</span>
+            <hr>
+            <div id="content"></div>
+          </div>
+          <div class="holder" id="conclusion-container"><span>Conclusion</span>
+            <hr>
+            <div id="conclusion"></div>
+          </div>
         </div>
-
+        <div id="final"></div>
+      </div>
     </div>
 
-    <script src="build.js"></script>
+  </div>
+
+  <script src="build.js"></script>
 </body>
 
 </html>
