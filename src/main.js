@@ -1,10 +1,9 @@
 var render = require('./render');
-var rng = require('./rng');
+var levels = require('./levels');
 
 var numberOfPapers = 30;
 var width = 300;
 var height = 150;
-var maxRotation = 45;
 var typesOfPapers = ['cover', 'introduction', 'content', 'conclusion']
 var papers = [];
 var papersPlaced = {
@@ -13,28 +12,33 @@ var papersPlaced = {
     content: undefined,
     conclusion: undefined
 };
-for (var i = 0; i < numberOfPapers; i++) {
-    const y = Math.floor(Math.random() * height)
-    const x = Math.floor(Math.random() * width);
-    var paper = {
-        id: i,
-        type: typesOfPapers[i % typesOfPapers.length],
-        variant: Math.floor(Math.random() * 4),
-        pos: {
-            x,
-            y
-        },
-        ogPos: {
-            x,
-            y
-        },
-        rotation: Math.floor(Math.random() * maxRotation * 2) - maxRotation
-    }
-    papers.push(paper)
-}
+var currentLevel = 0;
+papers = levels.loadLevel(currentLevel, width, height)
+// for (var i = 0; i < numberOfPapers; i++) {
+//     const y = Math.floor(Math.random() * height)
+//     const x = Math.floor(Math.random() * width);
+//     var paper = {
+//         id: i,
+//         type: typesOfPapers[i % typesOfPapers.length],
+//         variant: Math.floor(Math.random() * 4),
+//         pos: {
+//             x,
+//             y
+//         },
+//         ogPos: {
+//             x,
+//             y
+//         },
+//         rotation: Math.floor(Math.random() * maxRotation * 2) - maxRotation
+//     }
+//     papers.push(paper)
+// }
 
 render.renderPapers(papers, mousedown);
 render.renderTimer(10)
+setTimeout(() => {
+    document.getElementById("timer").classList.add("done")
+}, 5000)
 
 
 let paperSelected = -1
@@ -111,5 +115,9 @@ function checkIfAllFilledIn() {
         }
 
     }
-
+}
+function loadLevel() {
+    const level = levels.levels[currentLevel];
+    const map = { 'a': 'cover', b: 'introduction', c: 'content', d: 'conclusion' }
+    console.log(level, levels.levels)
 }

@@ -71,12 +71,16 @@ module.exports = {
     },
     renderTimer: function (time) {
         let start = null
+        var element = document.getElementById("timer");
+        element.classList.remove("done")
+
         function step(timestamp) {
-            var element = document.getElementById("timer");
+            if (element.classList.contains("done")) {
+                return
+            }
 
             if (!start) start = timestamp;
             var progress = timestamp - start;
-            console.log(progress)
             element.style.width = 100 - ((progress * 100) / (time * 1000)) + "%";
             if (progress < time * 1000) {
                 window.requestAnimationFrame(step);
