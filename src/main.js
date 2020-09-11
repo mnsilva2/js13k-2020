@@ -1,10 +1,8 @@
 var render = require('./render');
 var levels = require('./levels');
 
-var numberOfPapers = 30;
 var width = 300;
 var height = 150;
-var typesOfPapers = ['cover', 'introduction', 'content', 'conclusion']
 var papers = [];
 var papersPlaced = {
     cover: undefined,
@@ -12,39 +10,26 @@ var papersPlaced = {
     content: undefined,
     conclusion: undefined
 };
+var numberOfPiles = 0;
 var currentLevel = 0;
-papers = levels.loadLevel(currentLevel, width, height)
-// for (var i = 0; i < numberOfPapers; i++) {
-//     const y = Math.floor(Math.random() * height)
-//     const x = Math.floor(Math.random() * width);
-//     var paper = {
-//         id: i,
-//         type: typesOfPapers[i % typesOfPapers.length],
-//         variant: Math.floor(Math.random() * 4),
-//         pos: {
-//             x,
-//             y
-//         },
-//         ogPos: {
-//             x,
-//             y
-//         },
-//         rotation: Math.floor(Math.random() * maxRotation * 2) - maxRotation
-//     }
-//     papers.push(paper)
-// }
 
-render.renderPapers(papers, mousedown);
-render.renderTimer(10)
-setTimeout(() => {
-    document.getElementById("timer").classList.add("done")
-}, 5000)
+papers = levels.loadLevel(currentLevel, width, height)
+
+render.renderLevel(levels.levels[currentLevel], () => {
+    render.renderPapers(papers, mousedown);
+    render.renderTimer(10)
+    setTimeout(() => {
+        document.getElementById("timer").classList.add("done")
+    }, 5000)
+});
+
 
 
 let paperSelected = -1
 let x = 0;
 let y = 0;
 let zIndex = 10
+
 function mousedown(event) {
     paperSelected = event.target.id;
     x = event.pageX;
@@ -54,14 +39,14 @@ function mousedown(event) {
     document.body.addEventListener("mousemove", mousemove);
     document.body.addEventListener("mouseup", mouseup);
 }
+
 function mousemove(event) {
     let paperElem = document.getElementById(paperSelected)
     paper = getPaperFromId(paperSelected);
     paperElem.style.top = paper.pos.y + event.pageY - y + "px"
     paperElem.style.left = paper.pos.x + event.pageX - x + "px"
-
-
 }
+
 function mouseup(event) {
     paper = getPaperFromId(paperSelected);
     paper.pos.y += + event.pageY - y
@@ -72,7 +57,6 @@ function mouseup(event) {
     const id = event.target.id
     const index = allowedPlaces.map(a => a + "-container").indexOf(id)
     if (index > -1) {
-        console.log(document.getElementById(id).children)
         if (document.getElementById(id).children.length < 4) {
             papersPlaced[allowedPlaces[index]] = paper
             render.renderPlaced(papersPlaced, paperClicked)
@@ -92,8 +76,8 @@ function paperClicked(event) {
     papersPlaced[parentId] = undefined
 
     render.renderPaper(paper, mousedown)
-
 }
+
 function getPaperFromId(id) {
     return papers.find((paper) => { return paper.id == id })
 }
@@ -109,15 +93,13 @@ function checkIfAllFilledIn() {
         }
     }
     if (valid) {
+        numberOfPiles++;
         render.addReportsToPile(papersPlaced);
         for (const property in papersPlaced) {
             papersPlaced[property] = undefined
         }
-
+        if (numberOfPiles == levels.levels[currentLevel].required) {
+            render.endLevel(currentLevel);
+        }
     }
-}
-function loadLevel() {
-    const level = levels.levels[currentLevel];
-    const map = { 'a': 'cover', b: 'introduction', c: 'content', d: 'conclusion' }
-    console.log(level, levels.levels)
 }

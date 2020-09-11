@@ -88,7 +88,18 @@ module.exports = {
         }
         window.requestAnimationFrame(step);
     },
-
+    renderLevel: function (level, callback) {
+        //Add Guy
+        //Add Text
+        //When Text is done, callback
+        callback();
+    },
+    endLevel: function () {
+        //Fade.
+        //clear everything.
+        //Show next day text
+        //Fade.
+    },
     cleanTable: function () {
         document.getElementById("work-table").innerHTML = ""
     }
