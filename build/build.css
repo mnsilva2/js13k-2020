@@ -1,0 +1,299 @@
+html,
+body,
+#game {
+  margin: 0;
+  background: black;
+}
+* {
+  font-family: monospace;
+}
+#intro,
+#day-text,
+#endgame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background-color: black;
+  transition: opacity 0.5s;
+  color: white;
+  text-align: center;
+  padding: 100px;
+  font-size: 5rem;
+  z-index: 500;
+}
+.fade-out {
+  opacity: 0;
+}
+#day-text {
+  opacity: 0;
+}
+.fade {
+  opacity: 1 !important;
+}
+#endgame {
+  font-size: 2rem;
+  opacity: 0;
+}
+#end {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.show {
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+#game {
+  display: block;
+  width: 1000px;
+  height: 750px;
+  margin: 50px auto;
+  background-color: #dddddd;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+.title {
+  height: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  background-color: #74d2e7;
+  padding-top: 8px;
+}
+#left,
+#top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+}
+#left {
+  bottom: 0;
+  width: calc(50% - 500px);
+}
+#top {
+  height: 50px;
+  right: 0;
+}
+.grabbing {
+  cursor: grabbing;
+}
+.table {
+  height: 50%;
+  width: 100%;
+  display: flex;
+}
+.table .work-table {
+  width: 50%;
+  height: 100%;
+  background-color: #48d62b;
+  display: flex;
+  position: relative;
+}
+.table .work-table .page:hover {
+  cursor: grab;
+}
+.table .report-section {
+  width: 50%;
+  height: 100%;
+}
+.table .report-section .in-progress {
+  background-color: #74d2e7;
+  display: flex;
+  height: 185px;
+  justify-content: center;
+  align-items: center;
+}
+.table .report-section .in-progress .holder {
+  margin: 8px;
+  background: #702f8a;
+  width: 100px;
+  height: 140px;
+  border: 2px inset;
+  text-align: center;
+}
+.table .report-section .in-progress .holder .page {
+  cursor: pointer;
+}
+.table .report-section #final {
+  background-color: #53c7e1;
+  height: 162px;
+  display: flex;
+  align-items: center;
+}
+.table .report-section #final .page {
+  transition: 250ms;
+}
+.table .report-section #final .page.cover {
+  z-index: 1;
+}
+.page {
+  height: 140px;
+  width: 100px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  border: 1px solid black;
+  text-align: center;
+  user-select: none;
+  text-transform: capitalize;
+}
+.page svg {
+  pointer-events: none;
+  width: 75%;
+  color: #444;
+}
+.page.v-1 {
+  background: #fbb756;
+}
+.page.v-2 {
+  background: #f7addd;
+}
+.page.v-3 {
+  background: #86da98;
+}
+.page.v-4 {
+  background: #e5888a;
+}
+#timer {
+  position: absolute;
+  height: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#timer.done {
+  animation: done;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+@keyframes done {
+  from {
+    background-color: #1062a4;
+  }
+  to {
+    background-color: #1a8ce9;
+  }
+}
+.green {
+  background-color: #29873d;
+}
+.yellow {
+  background-color: #fcc600;
+}
+.red {
+  background-color: #cb2c30;
+}
+#guy {
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  width: 400px;
+  height: 900px;
+  top: -100px;
+}
+#tie-top {
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: white transparent transparent transparent;
+}
+#tie-bottom {
+  width: 0;
+  height: 0;
+  margin-left: 130px;
+  border: 70px solid transparent;
+  border-bottom: 300px solid white;
+  position: relative;
+  top: -100px;
+}
+#tie-bottom:after {
+  content: '';
+  position: absolute;
+  left: -70px;
+  top: 300px;
+  width: 0;
+  height: 0;
+  border: 70px solid transparent;
+  border-top: 70px solid white;
+}
+#text-container {
+  position: absolute;
+  left: 500px;
+  top: 50px;
+  width: 450px;
+  height: 300px;
+  font-size: 2rem;
+}
+.transition {
+  transition: all 0.5s;
+}
+.enter {
+  animation-name: guy-enters;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
+.leave {
+  animation-name: guy-enters;
+  animation-duration: 2s;
+  animation-direction: reverse;
+  animation-fill-mode: both;
+}
+@keyframes guy-enters {
+  0% {
+    left: -500px;
+    top: -100px;
+  }
+  12% {
+    top: -120px;
+  }
+  25% {
+    top: -100px;
+  }
+  37% {
+    top: -120px;
+  }
+  50% {
+    top: -100px;
+  }
+  75% {
+    top: -120px;
+  }
+  100% {
+    left: 0;
+    top: -100px;
+  }
+}
+.placeholder {
+  transform-origin: top left;
+  transform: translate(25px, 5px) rotate(60deg);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: left;
+  position: absolute;
+  pointer-events: none;
+}
+button {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background: #1377c8;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: white;
+}
+button:hover {
+  background: #116cb6;
+}
+button:focus {
+  background: #0f61a4;
+}
