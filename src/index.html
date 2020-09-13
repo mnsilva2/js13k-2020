@@ -9,8 +9,6 @@
 </head>
 
 <body>
-  <div id="left"></div>
-  <div id="top"></div>
   <div id="game">
     <div id="guy">
       <div id="tie-top"></div>
@@ -19,27 +17,30 @@
     <div id="text-container">
       <p id="text"></p>
       <button id="next" style="display: none;">Next</button>
+      <button id="end" style="display: none;">End Day</button>
     </div>
-    <div id="timer"></div>
+    <div id="timer" class="green"></div>
     <div class="table">
       <div class="work-table" id="work-table">
       </div>
       <div class="report-section">
+        <div class="title">The Report Making Machine</div>
         <div class="in-progress">
-          <div class="holder" id="cover-container"><span>Cover</span>
-            <hr>
+          <div class="holder" id="cover-container">
+            <div class="placeholder">Cover</div>
             <div id="cover"></div>
           </div>
-          <div class="holder" id="introduction-container"><span>Introduction</span>
-            <hr>
+          <div class="holder" id="introduction-container">
+            <div class="placeholder">Introduction</div>
             <div id="introduction"></div>
           </div>
-          <div class="holder" id="content-container"><span>Content</span>
-            <hr>
+          <div class="holder" id="content-container">
+            <div class="placeholder">Content</div>
             <div id="content"></div>
           </div>
-          <div class="holder" id="conclusion-container"><span>Conclusion</span>
-            <hr>
+          <div class="holder" id="conclusion-container">
+            <div class="placeholder">Conclusion</div>
+
             <div id="conclusion"></div>
           </div>
         </div>
@@ -48,6 +49,10 @@
     </div>
 
   </div>
+  <div id="left"></div>
+  <div id="top"></div>
+
+  <div id="day-text"></div>
 
   <script src="build.js"></script>
 </body>

@@ -43,7 +43,7 @@ module.exports = {
   createBasicPaper: function (paper) {
     const paperElem = document.createElement("div")
     paperElem.id = paper.id
-    paperElem.innerText = paper.type
+    paperElem.innerText = paper.type + ""
     paperElem.className = `page ${paper.type} v-${paper.variant}`
     return paperElem
   },
@@ -57,21 +57,21 @@ module.exports = {
         paperElem.style.position = "absolute";
         switch (papersPlaced[property].type) {
           case "cover":
-            paperElem.style.transform = "translate(20px, -150px)"
+            paperElem.style.transform = "translate(20px, -175px)"
             break;
           case "introduction":
-            paperElem.style.transform = "translate(140px, -150px)"
+            paperElem.style.transform = "translate(140px, -175px)"
             break;
           case "content":
-            paperElem.style.transform = "translate(260px, -150px)"
+            paperElem.style.transform = "translate(260px, -175px)"
             break;
           case "conclusion":
-            paperElem.style.transform = "translate(380px, -150px)"
+            paperElem.style.transform = "translate(380px, -175px)"
             break;
 
         }
         setTimeout(() => {
-          paperElem.style.transform = "translate(" + randomX + "px, -150px)"
+          paperElem.style.transform = "translate(" + randomX + "px, -175px)"
           setTimeout(() => {
             paperElem.style.transform = "translate(" + randomX + "px, 0)"
           }, 250)
@@ -93,7 +93,17 @@ module.exports = {
 
       if (!start) start = timestamp;
       var progress = timestamp - start;
-      element.style.width = 100 - ((progress * 100) / (time * 1000)) + "%";
+      const width = 100 - ((progress * 100) / (time * 1000))
+      element.style.width = width + "%";
+      if (width > 50) {
+        element.className = "green"
+      } else {
+        if (width > 25) {
+          element.className = "yellow"
+        } else {
+          element.className = "red"
+        }
+      }
       if (progress < time * 1000) {
         window.requestAnimationFrame(step);
       }
@@ -149,7 +159,17 @@ module.exports = {
       callback()
     }, 2500)
   },
-  endLevel: function () {
+  endLevel: function (currentLevel) {
+    document.getElementById("day-text").innerText = "Day " + (currentLevel + 1)
+    document.getElementById("day-text").classList.add("fade")
+    setTimeout(() => {
+      this.cleanTable();
+    }, 1500)
+    setTimeout(() => {
+
+      document.getElementById("day-text").classList.remove("fade")
+    }, 3000)
+
     //Fade.
     //clear everything.
     //Show next day text
@@ -157,6 +177,8 @@ module.exports = {
   },
   cleanTable: function () {
     document.getElementById("work-table").innerHTML = ""
+    document.getElementById("final").innerHTML = "";
+
   }
 
 };
