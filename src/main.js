@@ -13,9 +13,15 @@ var papersPlaced = {
 var numberOfPiles = 0;
 var currentLevel = 0;
 
-render.endLevel(currentLevel)
+
 setTimeout(() => {
-  startLevel()
+  render.endLevel(currentLevel)
+  setTimeout(() => {
+    startLevel()
+  }, 3000)
+  setTimeout(() => {
+    document.getElementById("intro").classList.add("fade-out")
+  }, 500)
 }, 3000)
 
 
@@ -70,7 +76,7 @@ function paperClicked(event) {
   event.target.parentElement.removeChild(event.target);
   papersPlaced[parentId] = undefined
 
-  render.renderPaper(paper, mousedown)
+  render.renderPaper(paper, mousedown, true)
 }
 
 function getPaperFromId(id) {
@@ -100,7 +106,8 @@ function checkIfAllFilledIn() {
       document.getElementById("timer").classList.add("done")
       end.style.display = "block"
       end.onclick = () => {
-        currentLevel++
+        currentLevel++;
+        clearTimeout(levelTimeout)
         render.endLevel(currentLevel)
         setTimeout(() => {
           startLevel()
@@ -109,13 +116,20 @@ function checkIfAllFilledIn() {
     }
   }
 }
+var levelTimeout = 0;
 
 function startLevel() {
   papers = levels.loadLevel(currentLevel, width, height)
-
   render.renderLevel(levels.levels[currentLevel], () => {
     render.renderPapers(papers, mousedown);
     render.renderTimer(levels.levels[currentLevel].time)
+
+    levelTimeout = setTimeout(() => {
+      //lose and stuff
+      document.getElementById("date").innerText = new Date().toDateString()
+      document.getElementById("service").innerText = (currentLevel + 1) + " day" + (currentLevel == 0 ? '' : 's')
+      document.getElementById("endgame").classList.add("show")
+    }, levels.levels[currentLevel].time * 1000)
   });
 
 }

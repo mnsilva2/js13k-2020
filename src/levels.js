@@ -1,10 +1,17 @@
 module.exports = {
   levels: [{
-    papers: ["a1", "b1", "c1", "d1"],
-    text: "Welcome to your new position! Your task here is simple, organize the files to make a report.\nFind all the parts from the same topic, and join them.\n Simply Drag the paper parts to the to the right and the machine does the rest.\nYou have all day to make one report.",
-    time: 60,
-    required: 1
-  }],
+      papers: ["a1", "b1", "c1", "d1"],
+      text: "aa", // "Welcome to your new position! Your task here is simple, organize the files to make a report.\nFind all the parts from the same topic, and join them.\n Simply Drag the paper parts to the to the right and the machine does the rest.\nYou have all day to make one report.",
+      time: 30,
+      required: 1
+    },
+    {
+      papers: [],
+      text: "I have some bad news to give you.",
+      time: 0,
+      required: 10
+    },
+  ],
   //
   loadLevel: function (currentLevel, width, height) {
 
