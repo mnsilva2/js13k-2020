@@ -45,8 +45,15 @@ body,
 
 }
 
+#end {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
 .show {
   opacity: 1 !important;
+  pointer-events: all !important;
 }
 
 
@@ -88,6 +95,11 @@ body,
   right: 0;
 }
 
+.grabbing {
+  cursor: grabbing;
+
+}
+
 .table {
   height: 50%;
   width: 100%;
@@ -100,6 +112,9 @@ body,
     display: flex;
     position: relative;
 
+    .page:hover {
+      cursor: grab;
+    }
 
   }
 
@@ -121,6 +136,10 @@ body,
         height: 140px;
         border: 2px inset;
         text-align: center;
+
+        .page {
+          cursor: pointer;
+        }
       }
     }
 
@@ -262,7 +281,7 @@ body,
   left: 500px;
   top: 50px;
   width: 450px;
-  height: 250px;
+  height: 300px;
   font-size: 2rem;
 
 }
@@ -326,4 +345,22 @@ body,
   text-align: left;
   position: absolute;
   pointer-events: none;
+}
+
+button {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background: #1377c8;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: white;
+
+  &:hover {
+    background: #116cb6;
+  }
+
+  &:focus {
+    background: #0f61a4;
+  }
 }

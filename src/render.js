@@ -35,7 +35,6 @@ module.exports = {
       if (parent) {
         if (papers[property]) {
           const oldChild = document.getElementById(papers[property].id)
-          console.log(oldChild, property, papers[property].id, papers)
           oldChild.parentElement.removeChild(oldChild)
           const paperElem = this.createBasicPaper(papers[property])
           paperElem.addEventListener('click', callback)
@@ -151,7 +150,6 @@ module.exports = {
     btn = document.getElementById("next")
     btn.style.display = "none"
     textpart = text.split("\n")[part]
-    console.log(textpart.length, part, )
     for (let i = 0; i < textpart.length; i++) {
       setTimeout(() => {
         document.getElementById("text").innerText = textpart.substring(0, i + 1)

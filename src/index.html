@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JS13KGames Boilerplate</title>
+  <title>Find the Papers</title>
   <link rel="stylesheet" href="build.css" />
 </head>
 
@@ -55,11 +55,11 @@
 
   <div id="day-text"></div>
   <div id="intro">
-    You're assigned a position to organize pages to build reports.
+    You were assigned a position to organize pages to build reports.
   </div>
   <div id="endgame"><span id="date"></span>
 
-    <p>[Employee Name],</p>
+    <p>Dear [Valued Employee Name],</p>
     <p>This letter is to inform you that your employment with [company name] will end today.</p>
 
     <p>Your employment was terminated for this reason:</p>
@@ -69,6 +69,10 @@
 
     <p>Thank you for your <span id="service"></span> of service</p>
 
+    <p>(Thank you for Playing)</p>
+    <p id="endgame-message">(This is the end of the game)</p>
+    <button id="try-again">Try Again</button>
+    <button id="restart">Restart from the begining</button>
   </div>
   <script src="build.js"></script>
 </body>

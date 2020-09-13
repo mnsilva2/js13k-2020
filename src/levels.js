@@ -7,9 +7,9 @@ module.exports = {
     },
     {
       papers: ["a1", "b1", "c1", "d1", "a2", "b2", "c2", "d2"],
-      text: "Congrats on your first day!\n Today we'll increase the your work capacity, and you have to sort 2 reports.\n Make sure all the papers are from the same categories.",
+      text: "Congrats on your first day!\n Today we'll increase the your work capacity, and you have to sort 2 reports.\n Make sure all the papers are from the same category.",
       time: 50,
-      required: 3
+      required: 2
     },
     {
       papers: ["a1", "b1", "c1", "d1", "a2", "b2", "c2", "d2", "a3", "b3", "c3", "d3", "a4", "b4", "c4", "d4", "a5", "b5", "c5", "d5"],
@@ -67,7 +67,7 @@ module.exports = {
     },
     {
       papers: ["a1", "b1", "c5", "c5", "a1", "b1", "f3", "c3", "d3", "c1", "d1", "a2", "c2", "d2", "d4", "d4", "c1", "e2", "f2", "g2", "h2", "a3", "e5", "f5", "a4", "b4", "d1", "d1", "a2", "b2", "c2", "d2", "c4"],
-      text: "I belive that Management has a solution too our problem, Tomorrow we'll talk.",
+      text: "I belive that Management has a solution to our problem, Tomorrow we'll talk.",
       time: 75,
       required: 4
     },

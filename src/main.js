@@ -12,7 +12,10 @@ var papersPlaced = {
 };
 var numberOfPiles = 0;
 var currentLevel = 0;
-
+const savedLevel = localStorage.getItem("find-the-papers")
+if (savedLevel && !!Number(savedLevel)) {
+  currentLevel = Number(savedLevel)
+}
 
 setTimeout(() => {
   render.endLevel(currentLevel)
@@ -31,6 +34,7 @@ let y = 0;
 let zIndex = 10
 
 function mousedown(event) {
+  document.body.classList.add("grabbing");
   paperSelected = event.target.id;
   x = event.pageX;
   y = event.pageY;
@@ -48,6 +52,7 @@ function mousemove(event) {
 }
 
 function mouseup(event) {
+  document.body.classList.remove("grabbing");
   paper = getPaperFromId(paperSelected);
   paper.pos.y += +event.pageY - y
   paper.pos.x += +event.pageX - x
@@ -104,10 +109,12 @@ function checkIfAllFilledIn() {
     if (numberOfPiles == levels.levels[currentLevel].required) {
       const end = document.getElementById("end")
       document.getElementById("timer").classList.add("done")
+      clearTimeout(levelTimeout);
       end.style.display = "block"
       end.onclick = () => {
         currentLevel++;
-        clearTimeout(levelTimeout)
+        localStorage.setItem("find-the-papers", currentLevel)
+        numberOfPiles = 0;
         render.endLevel(currentLevel)
         setTimeout(() => {
           startLevel()
@@ -129,7 +136,29 @@ function startLevel() {
       document.getElementById("date").innerText = new Date().toDateString()
       document.getElementById("service").innerText = (currentLevel + 1) + " day" + (currentLevel == 0 ? '' : 's')
       document.getElementById("endgame").classList.add("show")
+      document.getElementById("restart").onclick = (() => {
+        restart()
+      })
+      if (currentLevel === 12) {
+        document.getElementById("try-again").style.display = "none"
+        document.getElementById("endgame-message").style.display = "block"
+      } else {
+        document.getElementById("endgame-message").style.display = "none"
+        document.getElementById("try-again").onclick = (() => {
+          tryAgain()
+
+        })
+      }
     }, levels.levels[currentLevel].time * 1000)
   });
 
+}
+
+function tryAgain() {
+  window.location.reload()
+}
+
+function restart() {
+  localStorage.removeItem("find-the-papers");
+  window.location.reload()
 }
